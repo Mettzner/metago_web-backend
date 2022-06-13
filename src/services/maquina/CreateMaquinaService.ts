@@ -15,15 +15,15 @@ class CreateMaquinaService{
         const maquina = await prismaClient.maquina.create({
             data: {
                 CODIGO: CODIGO,
-                DESCRICAO: DESCRICAO
+                DESCRICAO: DESCRICAO,
             },
             select:{
-                CODIGO: true,
+                ID_MAQUINA: true,
                 DESCRICAO:true,
             }
         })
 
-        return maquina
+        return maquina;
 
     }
 }

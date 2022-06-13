@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { CreateRepresenService } from '../../services/representante/CreateRepresenService'
+import { CreateRepresenService } from '../../services/represen/CreateRepresenService'
 
 class CreateRepresenController{
     async handle (req: Request, res:Response){
