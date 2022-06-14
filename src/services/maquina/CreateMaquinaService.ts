@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface MaquinaRequest{
-    CODIGO: string;
+    CODIGO: number;
     DESCRICAO: string;
 }
 

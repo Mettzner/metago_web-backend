@@ -2,6 +2,9 @@ import { Router } from 'express';
 import multer from 'multer'
 
 
+// ENTIDADE
+import { CreateEntidadeController } from './controllers/entidade/CreateEntidadeController'
+import { ListEntidadeController } from './controllers/entidade/ListEntidadeController'
 // MAQUINA
 import { CreateMaquinaController } from './controllers/maquina/CreateMaquinaController'
 import { ListMaquinaController } from './controllers/maquina/ListMaquinaController'
@@ -42,6 +45,10 @@ const upload = multer(uploadConfig.upload("./tmp"));
 // })
 
 
+//--ROTAS ENTIDADE--
+router.post('/entidade', isAuthenticated, new CreateEntidadeController().handle)
+router.get('/entidade', isAuthenticated, new ListEntidadeController().handle)
+
 //--ROTAS MAQUINA--
 router.post('/maquina', isAuthenticated, new CreateMaquinaController().handle)
 router.get('/maquina', isAuthenticated, new ListMaquinaController().handle)
@@ -71,8 +78,8 @@ router.post('/represen', isAuthenticated, new CreateRepresenController().handle)
 router.get('/represen', isAuthenticated, new ListRepresenController().handle)
 
 //-- ROTAS USER --
-router.post('/users', new CreateUserController().handle)
-router.post('/session', new AuthUserController().handle)
+router.post('/cadusuario', new CreateUserController().handle)
+router.post('/sessao', new AuthUserController().handle)
 router.get('/me', isAuthenticated, new DetailUserController().handle)
 
 export { router };

@@ -20,117 +20,119 @@ model Usuarios {
   NIVEL_ACESSO Int
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_USUARIO   String    @id @default(uuid())
+  ID_USUARIO   Int @id @default(autoincrement())
+  
+  // ID_USUARIO   String    @default(uuid())
 
   @@map("USUARIOS")
 }
 
 model Entidade {
-  CODCLI       String
+  CODCLI       Int @id @default(autoincrement())
   NOME         String
   CNPJ         String
   EMAIL        String?
-  TELEFONE     String
-  ENDERECO     String
-  CIDADE       String
-  BAIRRO       String
-  NUMERO       String
-  UF           String
-  FUNCAO       String
-  PAIS         String
+  TELEFONE     String?
+  ENDERECO     String?
+  CIDADE       String?
+  BAIRRO       String?
+  NUMERO       String?
+  UF           String?
+  FUNCAO       String?
+  PAIS         String?
   COMPLEMENTO  String?
-  CEP          String
+  CEP          String?
   TIPO         String?
   STATUS       String?
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_ENTIDADE  String    @id @default(uuid())
+  ID_ENTIDADE  String    @default(uuid())
 
   @@map("ENTIDADE")
 }
 
 model Maquina {
-  CODIGO       String
+  CODIGO       Int @id @default(autoincrement())
   DESCRICAO    String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_MAQUINA   String    @id @default(uuid())
+   ID_MAQUINA   String   @default(uuid())
 
   @@map("MAQUINA")
 }
 
 model Represen {
-  CODREP       String
+  CODREP       Int @id @default(autoincrement())
   NOME         String
   CODCLI       String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_REPRESEN  String    @id @default(uuid())
+  ID_REPRESEN  String    @default(uuid())
 
   @@map("REPRESEN")
 } 
 
 model Produto {
-  CODIGO       String    
+  CODIGO       Int @id @default(autoincrement())  
   DESCRICAO    String
   PRECO        Float
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_PRODUTO   String @id @default(uuid())
+  ID_PRODUTO   String @default(uuid())
 
   @@map("PRODUTOS")
 }
 
 model Receber {
-  NUMERO        String
-  CODCLI        String
-  CODREP        String 
-  VALOR_TOTAL   Float
-  PARCELA       String
-  VALOR_PARCELA Float
+  NUMERO        Int @id @default(autoincrement())
+  CODCLI        String?
+  CODREP        String?
+  VALOR_TOTAL   Float?
+  PARCELA       String?
+  VALOR_PARCELA Float?
   DT_CADASTRO   DateTime? @default(now())
   DT_ALTERACAO  DateTime? @default(now())
-  ID_RECEBER    String    @id @default(uuid())
+  ID_RECEBER    String    @default(uuid())
 
   @@map("RECEBER")
 }
 
 model ReceberB {
-  NUMERO        String
-  CODCLI        String
-  CODREP        String
-  VALOR_PAGO    Float
-  PARCELA       String
-  VALOR_PARCELA Float
+  NUMERO        Int @id @default(autoincrement())
+  CODCLI        String?
+  CODREP        String?
+  VALOR_PAGO    Float?
+  PARCELA       String?
+  VALOR_PARCELA Float?
   DT_PAGAMENTO  DateTime @default(now())
-  ID_RECEBERB   String    @id @default(uuid())
+  ID_RECEBERB   String   @default(uuid())
 
   @@map("RECEBERB")
 }
 
 model Pagar {
-  NUMERO        String
-  CODCLI        String
-  CODREP        String
-  VALOR_TOTAL   Float
-  PARCELA       String
+  NUMERO        Int @id @default(autoincrement())
+  CODCLI        String?
+  CODREP        String?
+  VALOR_TOTAL   Float?
+  PARCELA       String?
   DT_VENCIMENTO DateTime @default(now())
   DT_CADASTRO   DateTime @default(now())
   DT_ALTERACAO  DateTime @default(now())
-  ID_PAGAR      String    @id @default(uuid())
+  ID_PAGAR      String   @default(uuid())
 
   @@map("PAGAR")
 }
 
 model PagarB {
-  NUMERO       String
-  CODCLI       String
-  CODREP       String
-  VALOR_TOTAL  Float
-  VALOR_PAGO   Float
-  PARCELA      String
+  NUMERO       Int @id @default(autoincrement())
+  CODCLI       String?
+  CODREP       String?
+  VALOR_TOTAL  Float?
+  VALOR_PAGO   Float?
+  PARCELA      String?
   DT_PAGAMENTO DateTime @default(now())
-  ID_PAGARB    String    @id @default(uuid())
+  ID_PAGARB    String   @default(uuid())
 
   @@map("PAGARB")
 }

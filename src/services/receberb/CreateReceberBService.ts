@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface ReceberBRequest{
-    NUMERO: string;
+    NUMERO: number;
     CODCLI: string;
     CODREP: string;
     PARCELA: string;
@@ -12,9 +12,9 @@ interface ReceberBRequest{
 class CreateReceberBService{
     async execute({ NUMERO, CODCLI, CODREP, PARCELA, VALOR_PAGO, VALOR_PARCELA }: ReceberBRequest){
         
-        if(NUMERO === ''){
-            throw new Error('Nome inválido')
-        }
+        // if(NUMERO === ''){
+        //     throw new Error('Nome inválido')
+        // }
 
         const receber = await prismaClient.receberB.create({
             data: {

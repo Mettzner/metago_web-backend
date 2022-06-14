@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface ProductRequest{
-  CODIGO: string;
+  CODIGO: number;
   DESCRICAO: string;
   PRECO: number;
 }

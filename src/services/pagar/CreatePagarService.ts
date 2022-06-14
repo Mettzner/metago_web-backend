@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface PagarRequest{
-    NUMERO: string;
+    NUMERO: number;
     CODCLI: string;
     CODREP: string;
     PARCELA: string;
@@ -12,9 +12,9 @@ interface PagarRequest{
 class CreatePagarService{
     async execute({ NUMERO, CODCLI, CODREP, PARCELA, VALOR_TOTAL, DT_VENCIMENTO }: PagarRequest){
         
-        if(NUMERO === ''){
-            throw new Error('Nome inválido')
-        }
+        // if(NUMERO === ''){
+        //     throw new Error('Nome inválido')
+        // }
 
         const pagar = await prismaClient.pagar.create({
             data: {

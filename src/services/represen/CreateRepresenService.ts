@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface RepresenRequest{
-    CODREP: string;
+    CODREP: number;
     NOME: string;
     CODCLI: string;
 }
