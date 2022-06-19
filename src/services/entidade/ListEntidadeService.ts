@@ -6,6 +6,8 @@ class ListEntidadeService{
             select: {
                 CODCLI: true,
                 NOME: true,
+                CNPJ: true,
+                CIDADE: true,
             }
         })
 
