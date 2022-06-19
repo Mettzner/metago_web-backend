@@ -3,12 +3,11 @@ import { AuthUserService } from '../../services/usuario/AuthUserService'
 
 class AuthUserController{
     async handle(req:Request, res: Response){
-        const { CODIGO, USUARIO, SENHA, NIVEL_ACESSO } = req.body;
+        const { USUARIO, SENHA, NIVEL_ACESSO } = req.body;
 
         const authUserService = new AuthUserService();
 
         const auth = await authUserService.execute({
-            CODIGO,
             USUARIO,
             SENHA,
             NIVEL_ACESSO    

@@ -3,7 +3,6 @@ import { compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 
 interface AuthRequest{
-    CODIGO: string;
     USUARIO: string;
     SENHA: string;
     NIVEL_ACESSO: number;
@@ -36,20 +35,19 @@ class AuthUserService{
 
         const token = sign(
             {
-             CODIGO: usuario.CODIGO,
              USUARIO: usuario.USUARIO,
              SENHA: usuario.SENHA,
              NIVEL_ACESSO: usuario.NIVEL_ACESSO
             },
             process.env.JWT_SECRET,
             {
-            subject: usuario.CODIGO,
+            subject: usuario.ID_USUARIO,
             expiresIn: '30d'
             }
         ) 
 
         return { 
-            CODIGO: usuario.CODIGO,
+            ID_USUARIO: usuario.ID_USUARIO,
             NOME: usuario.NOME,
             USUARIO: usuario.USUARIO,
             token: token

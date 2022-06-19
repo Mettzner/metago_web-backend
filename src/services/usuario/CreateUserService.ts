@@ -2,16 +2,14 @@ import prismaClient from '../../prisma'
 import { hash } from 'bcryptjs'
 
 interface UserRequest{
-    CODIGO: string;
-    CODCLI: string;
     NOME: string;
     USUARIO: string;
     SENHA: string;
-    NIVEL_ACESSO: number;
+    NIVEL_ACESSO: string;
 }
 
 class CreateUserService{
-    async execute({CODIGO, CODCLI, NOME, USUARIO, SENHA, NIVEL_ACESSO}: UserRequest){
+    async execute({ NOME, USUARIO, SENHA, NIVEL_ACESSO }: UserRequest){
 
         //verificar se ele enviou um email
         if(!USUARIO){
@@ -33,8 +31,6 @@ class CreateUserService{
 
         const usuario = await prismaClient.usuarios.create({
             data: {
-                CODIGO: CODIGO,
-                CODCLI: CODCLI,
                 NOME: NOME,
                 USUARIO: USUARIO,
                 SENHA: passwordHash,

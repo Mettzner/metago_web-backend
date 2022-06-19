@@ -50,8 +50,8 @@ router.post('/entidade', isAuthenticated, new CreateEntidadeController().handle)
 router.get('/entidade', isAuthenticated, new ListEntidadeController().handle)
 
 //--ROTAS MAQUINA--
-router.post('/maquina', isAuthenticated, new CreateMaquinaController().handle)
-router.get('/maquina', isAuthenticated, new ListMaquinaController().handle)
+router.post('/cadmaquina', isAuthenticated, new CreateMaquinaController().handle)
+router.get('/cadmaquina', isAuthenticated, new ListMaquinaController().handle)
 
 //--ROTAS PRODUTO--
 router.post('/produto', isAuthenticated, upload.single('file'), new CreateProdutoController().handle)

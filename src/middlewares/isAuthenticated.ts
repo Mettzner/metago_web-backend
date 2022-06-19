@@ -29,7 +29,7 @@ export function isAuthenticated(
 
         //recuperar o id do token e colocar dentro de uma
         //variável user_id dentro do req
-        req.CODIGO = sub;
+        req.ID_USUARIO = sub;
 
         //se der tudo certo, prossegue
         return next();

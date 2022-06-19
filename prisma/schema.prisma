@@ -12,15 +12,15 @@ datasource db {
 
 //criar uma migration :yarn prisma migrate dev
 model Usuarios {
-  CODIGO       String
+  CODIGO       Int @id @default(autoincrement())
   NOME         String
   USUARIO      String
   CODCLI       String?
   SENHA        String
-  NIVEL_ACESSO Int
+  NIVEL_ACESSO String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_USUARIO   Int @id @default(autoincrement())
+  ID_USUARIO   String    @default(uuid())
   
   // ID_USUARIO   String    @default(uuid())
 
@@ -56,7 +56,7 @@ model Maquina {
   DESCRICAO    String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-   ID_MAQUINA   String   @default(uuid())
+  ID_MAQUINA   String   @default(uuid())
 
   @@map("MAQUINA")
 }
@@ -64,7 +64,7 @@ model Maquina {
 model Represen {
   CODREP       Int @id @default(autoincrement())
   NOME         String
-  CODCLI       String
+  CODCLI       String?
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
   ID_REPRESEN  String    @default(uuid())
