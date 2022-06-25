@@ -3,14 +3,14 @@ import { CreateReceberService } from '../../services/receber/CreateReceberServic
 
 class CreateReceberController{
     async handle (req: Request, res:Response){
-        const { NUMERO, CODCLI, CODREP, VALOR_TOTAL, PARCELA, VALOR_PARCELA } = req.body;
+        const { NUMERO, CODCLI, CODFUN, VALOR_TOTAL, PARCELA, VALOR_PARCELA } = req.body;
 
         const createReceberService = new CreateReceberService
 
         const receber = await createReceberService.execute({
                 NUMERO,       
                 CODCLI,   
-                CODREP,       
+                CODFUN,       
                 VALOR_TOTAL,  
                 PARCELA,       
                 VALOR_PARCELA, 

@@ -1,8 +1,8 @@
 import prismaClient from "../../prisma";
-class ListEntidadeService{
+class ListClienteService{
     async execute(){
 
-        const entidade = await prismaClient.entidade.findMany({
+        const cliente = await prismaClient.cliente.findMany({
             select: {
                 CODCLI: true,
                 NOME: true,
@@ -11,9 +11,9 @@ class ListEntidadeService{
             }
         })
 
-        return entidade;
+        return cliente;
 
     }
 }
 
-export { ListEntidadeService }
+export { ListClienteService }

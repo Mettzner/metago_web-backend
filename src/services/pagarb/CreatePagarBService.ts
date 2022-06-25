@@ -2,15 +2,15 @@ import prismaClient from "../../prisma";
 
 interface PagarBRequest{
     NUMERO: number;
-    CODCLI: string;
-    CODREP: string;
+    CODCLI: number;
+    CODFUN: number;
     PARCELA: string;
     VALOR_TOTAL: number;
     VALOR_PAGO: number;
 }
 
 class CreatePagarBService{
-    async execute({ NUMERO, CODCLI, CODREP, PARCELA, VALOR_TOTAL, VALOR_PAGO }: PagarBRequest){
+    async execute({ NUMERO, CODCLI, CODFUN, PARCELA, VALOR_TOTAL, VALOR_PAGO }: PagarBRequest){
         
         // if(NUMERO === ''){
         //     throw new Error('Nome inválido')
@@ -20,7 +20,7 @@ class CreatePagarBService{
             data: {
                 NUMERO: NUMERO,
                 CODCLI: CODCLI,
-                CODREP: CODREP,
+                CODFUN: CODFUN,
                 PARCELA: PARCELA,
                 VALOR_TOTAL: VALOR_TOTAL,
                 VALOR_PAGO: VALOR_PAGO,

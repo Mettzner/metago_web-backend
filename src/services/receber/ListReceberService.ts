@@ -6,7 +6,7 @@ class ListReceberService{
             select: {
                 NUMERO: true,       
                 CODCLI: true,   
-                CODREP: true,       
+                CODFUN: true,       
                 VALOR_TOTAL: true,  
                 PARCELA: true,       
                 VALOR_PARCELA: true, 

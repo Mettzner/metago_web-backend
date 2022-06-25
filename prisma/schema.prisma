@@ -12,23 +12,20 @@ datasource db {
 
 //criar uma migration :yarn prisma migrate dev
 model Usuarios {
-  CODIGO       Int @id @default(autoincrement())
+  CODIGO       Int       @id @default(autoincrement())
   NOME         String
   USUARIO      String
-  CODCLI       String?
   SENHA        String
   NIVEL_ACESSO String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
   ID_USUARIO   String    @default(uuid())
-  
-  // ID_USUARIO   String    @default(uuid())
 
   @@map("USUARIOS")
 }
 
-model Entidade {
-  CODCLI       Int @id @default(autoincrement())
+model Cliente {
+  CODCLI       Int       @id @default(autoincrement())
   NOME         String
   CNPJ         String
   EMAIL        String?
@@ -38,55 +35,63 @@ model Entidade {
   BAIRRO       String?
   NUMERO       String?
   UF           String?
-  FUNCAO       String?
   PAIS         String?
   COMPLEMENTO  String?
   CEP          String?
-  TIPO         String?
-  STATUS       String?
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
   ID_ENTIDADE  String    @default(uuid())
 
-  @@map("ENTIDADE")
+  Servicos Servicos[]
+  PagarB   PagarB[]
+  Receber  Receber[]
+  ReceberB ReceberB[]
+  Pagar    Pagar[]
+  @@map("CLIENTES")
 }
 
 model Maquina {
-  CODIGO       Int @id @default(autoincrement())
+  CODIGO       Int       @id @default(autoincrement())
   DESCRICAO    String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_MAQUINA   String   @default(uuid())
+  ID_MAQUINA   String    @default(uuid())
 
-  @@map("MAQUINA")
+  Servicos Servicos[]
+  @@map("MAQUINAS")
 }
 
-model Represen {
-  CODREP       Int @id @default(autoincrement())
-  NOME         String
-  CODCLI       String?
-  DT_CADASTRO  DateTime? @default(now())
-  DT_ALTERACAO DateTime? @default(now())
-  ID_REPRESEN  String    @default(uuid())
+model Funcionario {
+  CODFUN         Int       @id @default(autoincrement())
+  NOME           String
+  DT_CADASTRO    DateTime? @default(now())
+  DT_ALTERACAO   DateTime? @default(now())
+  ID_FUNCIONARIO String    @default(uuid())
 
-  @@map("REPRESEN")
-} 
+  Servicos Servicos[]
+  PagarB   PagarB[]
+  Receber  Receber[]
+  ReceberB ReceberB[]
+  Pagar    Pagar[]
+  @@map("FUNCIONARIOS")
+}
 
 model Produto {
-  CODIGO       Int @id @default(autoincrement())  
+  CODIGO       Int       @id @default(autoincrement())
   DESCRICAO    String
   PRECO        Float
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_PRODUTO   String @default(uuid())
+  ID_PRODUTO   String    @default(uuid())
 
+  Servicos Servicos[]
   @@map("PRODUTOS")
 }
 
 model Receber {
-  NUMERO        Int @id @default(autoincrement())
-  CODCLI        String?
-  CODREP        String?
+  NUMERO        Int       @id @default(autoincrement())
+  CODCLI        Int
+  CODFUN        Int
   VALOR_TOTAL   Float?
   PARCELA       String?
   VALOR_PARCELA Float?
@@ -94,26 +99,34 @@ model Receber {
   DT_ALTERACAO  DateTime? @default(now())
   ID_RECEBER    String    @default(uuid())
 
+
+  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
+  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+
   @@map("RECEBER")
 }
 
 model ReceberB {
-  NUMERO        Int @id @default(autoincrement())
-  CODCLI        String?
-  CODREP        String?
+  NUMERO        Int      @id @default(autoincrement())
+  CODCLI        Int
+  CODFUN        Int
   VALOR_PAGO    Float?
   PARCELA       String?
   VALOR_PARCELA Float?
   DT_PAGAMENTO  DateTime @default(now())
   ID_RECEBERB   String   @default(uuid())
 
+
+  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
+  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+
   @@map("RECEBERB")
 }
 
 model Pagar {
-  NUMERO        Int @id @default(autoincrement())
-  CODCLI        String?
-  CODREP        String?
+  NUMERO        Int      @id @default(autoincrement())
+  CODCLI        Int
+  CODFUN        Int
   VALOR_TOTAL   Float?
   PARCELA       String?
   DT_VENCIMENTO DateTime @default(now())
@@ -121,18 +134,47 @@ model Pagar {
   DT_ALTERACAO  DateTime @default(now())
   ID_PAGAR      String   @default(uuid())
 
+
+  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
+  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+
   @@map("PAGAR")
 }
 
 model PagarB {
-  NUMERO       Int @id @default(autoincrement())
-  CODCLI       String?
-  CODREP       String?
+  NUMERO       Int      @id @default(autoincrement())
+  CODCLI       Int
+  CODFUN       Int
   VALOR_TOTAL  Float?
   VALOR_PAGO   Float?
   PARCELA      String?
   DT_PAGAMENTO DateTime @default(now())
   ID_PAGARB    String   @default(uuid())
 
+  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
+  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+
   @@map("PAGARB")
+}
+
+model Servicos {
+  CODIGO       Int      @id @default(autoincrement())
+  CODCLI       Int
+  NOME_CLI     String
+  CODFUN       Int
+  NOME_FUN     String
+  VALOR        Float
+  QTDE_HORAS   String
+  COD_PRODUTO  Int
+  COD_MAQUINA  Int
+  DT_CADASTRO  DateTime @default(now())
+  DT_ALTERACAO DateTime @default(now())
+  ID_SERVICO   String   @default(uuid())
+
+  Maquinas     Maquina     @relation(fields: [COD_MAQUINA], references: [CODIGO])
+  Produtos     Produto     @relation(fields: [COD_PRODUTO], references: [CODIGO])
+  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
+  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+
+  @@map("SERVICOS")
 }

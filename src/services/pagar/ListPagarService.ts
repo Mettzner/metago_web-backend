@@ -6,7 +6,7 @@ class ListPagarService{
             select: {
                 NUMERO: true,
                 CODCLI: true,
-                CODREP: true,
+                CODFUN: true,
                 PARCELA: true,
                 VALOR_TOTAL: true,
             }

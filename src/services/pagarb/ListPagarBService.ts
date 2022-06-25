@@ -6,7 +6,7 @@ class ListPagarBService{
             select: {
                 NUMERO: true,
                 CODCLI: true,
-                CODREP: true,
+                CODFUN: true,
                 PARCELA: true,
                 VALOR_TOTAL: true,
                 VALOR_PAGO: true,

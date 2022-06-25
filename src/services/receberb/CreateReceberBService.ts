@@ -2,15 +2,15 @@ import prismaClient from "../../prisma";
 
 interface ReceberBRequest{
     NUMERO: number;
-    CODCLI: string;
-    CODREP: string;
+    CODCLI: number;
+    CODFUN: number;
     PARCELA: string;
     VALOR_PAGO: number;
     VALOR_PARCELA: number;
 }
 
 class CreateReceberBService{
-    async execute({ NUMERO, CODCLI, CODREP, PARCELA, VALOR_PAGO, VALOR_PARCELA }: ReceberBRequest){
+    async execute({ NUMERO, CODCLI, CODFUN, PARCELA, VALOR_PAGO, VALOR_PARCELA }: ReceberBRequest){
         
         // if(NUMERO === ''){
         //     throw new Error('Nome inválido')
@@ -20,7 +20,7 @@ class CreateReceberBService{
             data: {
                NUMERO: NUMERO,
                CODCLI: CODCLI,
-               CODREP: CODREP,
+               CODFUN: CODFUN,
                PARCELA: PARCELA,
                VALOR_PAGO: VALOR_PAGO,
                VALOR_PARCELA: VALOR_PARCELA,
@@ -28,7 +28,7 @@ class CreateReceberBService{
             select:{
                 NUMERO: true,
                 CODCLI:true,
-                CODREP:true,
+                CODFUN:true,
                 PARCELA:true,
                 VALOR_PAGO:true,
                 VALOR_PARCELA:true,

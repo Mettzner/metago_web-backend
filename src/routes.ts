@@ -3,8 +3,8 @@ import multer from 'multer'
 
 
 // ENTIDADE
-import { CreateEntidadeController } from './controllers/entidade/CreateEntidadeController'
-import { ListEntidadeController } from './controllers/entidade/ListEntidadeController'
+import { CreateClienteController } from './controllers/cliente/CreateClienteController'
+import { ListClienteController } from './controllers/cliente/ListClienteController'
 // MAQUINA
 import { CreateMaquinaController } from './controllers/maquina/CreateMaquinaController'
 import { ListMaquinaController } from './controllers/maquina/ListMaquinaController'
@@ -23,9 +23,9 @@ import { ListReceberController } from './controllers/receber/ListReceberControll
 // RECEBERB
 import { CreateReceberBController } from './controllers/receberb/CreateReceberBController'
 import { ListReceberBController } from './controllers/receberb/ListReceberBController'
-// REPRESEN
-import { CreateRepresenController } from './controllers/represen/CreateRepresenController'
-import { ListRepresenController } from './controllers/represen/ListRepresenController'
+// FUNCIONARIO
+import { CreateFuncionarioController } from './controllers/funcionario/CreateFuncionarioController'
+import { ListFuncionarioController } from './controllers/funcionario/ListFuncionarioController'
 // USUARIO
 import { CreateUserController } from './controllers/usuario/CreateUserController'
 import { AuthUserController } from './controllers/usuario/AuthUserController'
@@ -45,9 +45,9 @@ const upload = multer(uploadConfig.upload("./tmp"));
 // })
 
 
-//--ROTAS ENTIDADE--
-router.post('/entidade', isAuthenticated, new CreateEntidadeController().handle)
-router.get('/entidade', isAuthenticated, new ListEntidadeController().handle)
+//--ROTAS CLIENTE--
+router.post('/cliente', isAuthenticated, new CreateClienteController().handle)
+router.get('/cliente', isAuthenticated, new ListClienteController().handle)
 
 //--ROTAS MAQUINA--
 router.post('/cadmaquina', isAuthenticated, new CreateMaquinaController().handle)
@@ -73,9 +73,9 @@ router.get('/receber', isAuthenticated, new ListReceberController().handle)
 router.post('/receberb', isAuthenticated, new CreateReceberBController().handle)
 router.get('/receberb', isAuthenticated, new ListReceberBController().handle)
 
-//--ROTAS REPRESEN--
-router.post('/represen', isAuthenticated, new CreateRepresenController().handle)
-router.get('/represen', isAuthenticated, new ListRepresenController().handle)
+//--ROTAS FUNCIONARIO--
+router.post('/funcionario', isAuthenticated, new CreateFuncionarioController().handle)
+router.get('/funcionario', isAuthenticated, new ListFuncionarioController().handle)
 
 //-- ROTAS USER --
 router.post('/cadusuario', new CreateUserController().handle)
