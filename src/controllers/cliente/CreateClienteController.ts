@@ -4,7 +4,7 @@ import { CreateClienteService } from '../../services/cliente/CreateClienteServic
 class CreateClienteController{
     async handle (req: Request, res:Response){
         const { NOME, CNPJ, EMAIL, TELEFONE, ENDERECO, CIDADE, BAIRRO, NUMERO, 
-                    UF, PAIS, COMPLEMENTO, CEP } = req.body;
+                    UF, PAIS, COMPLEMENTO, CEP, ID_CLIENTE } = req.body;
 
         const createClienteService = new CreateClienteService
 
@@ -21,6 +21,7 @@ class CreateClienteController{
             PAIS, 
             COMPLEMENTO, 
             CEP, 
+            ID_CLIENTE,
         });
 
         return res.json(cliente);

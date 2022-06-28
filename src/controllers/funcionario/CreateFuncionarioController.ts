@@ -3,12 +3,12 @@ import { CreateFuncionarioService } from '../../services/funcionario/CreateFunci
 
 class CreateFuncionarioController{
     async handle (req: Request, res:Response){
-        const { CODFUN, NOME } = req.body;
+        const { ID_FUNCIONARIO, NOME } = req.body;
 
         const createFuncionarioService = new CreateFuncionarioService
 
         const funcionario = await createFuncionarioService.execute({
-            CODFUN,
+            ID_FUNCIONARIO,
             NOME,
         });
 

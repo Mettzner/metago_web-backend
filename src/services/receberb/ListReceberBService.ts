@@ -5,8 +5,8 @@ class ListReceberBService{
         const receberb = await prismaClient.receberB.findMany({
             select: {
                 NUMERO: true,
-                CODCLI: true,
-                CODFUN: true,
+                ID_CLIENTE: true,
+                ID_FUNCIONARIO: true,
                 PARCELA: true,
                 VALOR_PAGO: true,
                 VALOR_PARCELA: true,

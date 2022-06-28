@@ -8,6 +8,9 @@ class ListClienteService{
                 NOME: true,
                 CNPJ: true,
                 CIDADE: true,
+                TELEFONE: true,
+                DT_CADASTRO: true,
+                ID_CLIENTE: true,
             }
         })
 

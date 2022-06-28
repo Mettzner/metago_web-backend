@@ -13,11 +13,12 @@ interface ClienteRequest{
     PAIS: string,
     COMPLEMENTO: string,
     CEP: string,
+    ID_CLIENTE: string,
 }
 
 class CreateClienteService{
     async execute({ NOME, CNPJ, EMAIL, TELEFONE, ENDERECO, CIDADE, BAIRRO, NUMERO, 
-                    UF, PAIS, COMPLEMENTO, CEP }: ClienteRequest){
+                    UF, PAIS, COMPLEMENTO, CEP, ID_CLIENTE }: ClienteRequest){
         
         if(NOME === ''){
             throw new Error('Nome inválido')
@@ -36,11 +37,12 @@ class CreateClienteService{
             UF: UF,
             PAIS: PAIS,
             COMPLEMENTO: COMPLEMENTO,
-            CEP: CEP,        
+            CEP: CEP,
                     },
             select:{
                 CODCLI: true,
                 NOME:true,
+                ID_CLIENTE: true,
             }
         })
 

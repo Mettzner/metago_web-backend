@@ -12,20 +12,20 @@ datasource db {
 
 //criar uma migration :yarn prisma migrate dev
 model Usuarios {
-  CODIGO       Int       @id @default(autoincrement())
+  CODIGO       Int       @default(autoincrement())
   NOME         String
   USUARIO      String
   SENHA        String
   NIVEL_ACESSO String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_USUARIO   String    @default(uuid())
+  ID_USUARIO   String    @id @default(uuid())
 
   @@map("USUARIOS")
 }
 
 model Cliente {
-  CODCLI       Int       @id @default(autoincrement())
+  CODCLI       Int       @default(autoincrement())
   NOME         String
   CNPJ         String
   EMAIL        String?
@@ -40,33 +40,34 @@ model Cliente {
   CEP          String?
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_ENTIDADE  String    @default(uuid())
+  ID_CLIENTE   String    @id @default(uuid())
 
   Servicos Servicos[]
   PagarB   PagarB[]
   Receber  Receber[]
   ReceberB ReceberB[]
   Pagar    Pagar[]
+
   @@map("CLIENTES")
 }
 
 model Maquina {
-  CODIGO       Int       @id @default(autoincrement())
+  CODIGO       Int       @default(autoincrement())
   DESCRICAO    String
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_MAQUINA   String    @default(uuid())
+  ID_MAQUINA   String    @id @default(uuid())
 
   Servicos Servicos[]
   @@map("MAQUINAS")
 }
 
 model Funcionario {
-  CODFUN         Int       @id @default(autoincrement())
+  CODFUN         Int       @default(autoincrement())
   NOME           String
   DT_CADASTRO    DateTime? @default(now())
   DT_ALTERACAO   DateTime? @default(now())
-  ID_FUNCIONARIO String    @default(uuid())
+  ID_FUNCIONARIO String    @id @default(uuid())
 
   Servicos Servicos[]
   PagarB   PagarB[]
@@ -77,104 +78,104 @@ model Funcionario {
 }
 
 model Produto {
-  CODIGO       Int       @id @default(autoincrement())
+  CODIGO       Int       @default(autoincrement())
   DESCRICAO    String
   PRECO        Float
   DT_CADASTRO  DateTime? @default(now())
   DT_ALTERACAO DateTime? @default(now())
-  ID_PRODUTO   String    @default(uuid())
+  ID_PRODUTO   String    @id @default(uuid())
 
   Servicos Servicos[]
   @@map("PRODUTOS")
 }
 
 model Receber {
-  NUMERO        Int       @id @default(autoincrement())
-  CODCLI        Int
-  CODFUN        Int
-  VALOR_TOTAL   Float?
-  PARCELA       String?
-  VALOR_PARCELA Float?
-  DT_CADASTRO   DateTime? @default(now())
-  DT_ALTERACAO  DateTime? @default(now())
-  ID_RECEBER    String    @default(uuid())
+  NUMERO         Int       @default(autoincrement())
+  ID_CLIENTE     String
+  ID_FUNCIONARIO String
+  VALOR_TOTAL    Float?
+  PARCELA        String?
+  VALOR_PARCELA  Float?
+  DT_CADASTRO    DateTime? @default(now())
+  DT_ALTERACAO   DateTime? @default(now())
+  ID_RECEBER     String    @id @default(uuid())
 
 
-  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
-  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+  Clientes     Cliente     @relation(fields: [ID_CLIENTE], references: [ID_CLIENTE])
+  Funcionarios Funcionario @relation(fields: [ID_FUNCIONARIO], references: [ID_FUNCIONARIO])
 
   @@map("RECEBER")
 }
 
 model ReceberB {
-  NUMERO        Int      @id @default(autoincrement())
-  CODCLI        Int
-  CODFUN        Int
-  VALOR_PAGO    Float?
-  PARCELA       String?
-  VALOR_PARCELA Float?
-  DT_PAGAMENTO  DateTime @default(now())
-  ID_RECEBERB   String   @default(uuid())
+  NUMERO         Int      @default(autoincrement())
+  ID_CLIENTE     String
+  ID_FUNCIONARIO String
+  VALOR_PAGO     Float?
+  PARCELA        String?
+  VALOR_PARCELA  Float?
+  DT_PAGAMENTO   DateTime @default(now())
+  ID_RECEBERB    String   @id @default(uuid())
 
 
-  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
-  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+  Clientes     Cliente     @relation(fields: [ID_CLIENTE], references: [ID_CLIENTE])
+  Funcionarios Funcionario @relation(fields: [ID_FUNCIONARIO], references: [ID_FUNCIONARIO])
 
   @@map("RECEBERB")
 }
 
 model Pagar {
-  NUMERO        Int      @id @default(autoincrement())
-  CODCLI        Int
-  CODFUN        Int
-  VALOR_TOTAL   Float?
-  PARCELA       String?
-  DT_VENCIMENTO DateTime @default(now())
-  DT_CADASTRO   DateTime @default(now())
-  DT_ALTERACAO  DateTime @default(now())
-  ID_PAGAR      String   @default(uuid())
+  NUMERO         Int      @default(autoincrement())
+  ID_CLIENTE     String
+  ID_FUNCIONARIO String
+  VALOR_TOTAL    Float?
+  PARCELA        String?
+  DT_VENCIMENTO  DateTime @default(now())
+  DT_CADASTRO    DateTime @default(now())
+  DT_ALTERACAO   DateTime @default(now())
+  ID_PAGAR       String   @id @default(uuid())
 
 
-  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
-  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+  Clientes     Cliente     @relation(fields: [ID_CLIENTE], references: [ID_CLIENTE])
+  Funcionarios Funcionario @relation(fields: [ID_FUNCIONARIO], references: [ID_FUNCIONARIO])
 
   @@map("PAGAR")
 }
 
 model PagarB {
-  NUMERO       Int      @id @default(autoincrement())
-  CODCLI       Int
-  CODFUN       Int
-  VALOR_TOTAL  Float?
-  VALOR_PAGO   Float?
-  PARCELA      String?
-  DT_PAGAMENTO DateTime @default(now())
-  ID_PAGARB    String   @default(uuid())
+  NUMERO         Int      @default(autoincrement())
+  ID_CLIENTE     String
+  ID_FUNCIONARIO String
+  VALOR_TOTAL    Float?
+  VALOR_PAGO     Float?
+  PARCELA        String?
+  DT_PAGAMENTO   DateTime @default(now())
+  ID_PAGARB      String   @id @default(uuid())
 
-  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
-  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+  Clientes     Cliente     @relation(fields: [ID_CLIENTE], references: [ID_CLIENTE])
+  Funcionarios Funcionario @relation(fields: [ID_FUNCIONARIO], references: [ID_FUNCIONARIO])
 
   @@map("PAGARB")
 }
 
 model Servicos {
-  CODIGO       Int      @id @default(autoincrement())
-  CODCLI       Int
-  NOME_CLI     String
-  CODFUN       Int
-  NOME_FUN     String
-  VALOR        Float
-  QTDE_HORAS   String
-  COD_PRODUTO  Int
-  COD_MAQUINA  Int
-  DT_CADASTRO  DateTime @default(now())
-  DT_ALTERACAO DateTime @default(now())
-  ID_SERVICO   String   @default(uuid())
+  CODIGO         Int      @default(autoincrement())
+  ID_CLIENTE     String
+  NOME_CLI       String
+  ID_FUNCIONARIO String
+  NOME_FUN       String
+  VALOR          Float
+  QTDE_HORAS     String
+  ID_PRODUTO     String
+  ID_MAQUINA     String
+  DT_CADASTRO    DateTime @default(now())
+  DT_ALTERACAO   DateTime @default(now())
+  ID_SERVICO     String   @id @default(uuid())
 
-  Maquinas     Maquina     @relation(fields: [COD_MAQUINA], references: [CODIGO])
-  Produtos     Produto     @relation(fields: [COD_PRODUTO], references: [CODIGO])
-  Clientes     Cliente     @relation(fields: [CODCLI], references: [CODCLI])
-  Funcionarios Funcionario @relation(fields: [CODFUN], references: [CODFUN])
+  Maquinas     Maquina     @relation(fields: [ID_MAQUINA], references: [ID_MAQUINA])
+  Produtos     Produto     @relation(fields: [ID_PRODUTO], references: [ID_PRODUTO])
+  Clientes     Cliente     @relation(fields: [ID_CLIENTE], references: [ID_CLIENTE])
+  Funcionarios Funcionario @relation(fields: [ID_FUNCIONARIO], references: [ID_FUNCIONARIO])
 
   @@map("SERVICOS")
 }

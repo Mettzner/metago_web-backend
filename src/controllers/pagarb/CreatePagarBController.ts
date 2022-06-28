@@ -3,14 +3,14 @@ import { CreatePagarBService } from '../../services/pagarb/CreatePagarBService'
 
 class CreatePagarBController{
     async handle (req: Request, res:Response){
-        const { NUMERO, CODCLI, CODFUN, PARCELA, VALOR_TOTAL, VALOR_PAGO } = req.body;
+        const { NUMERO, ID_CLIENTE, ID_FUNCIONARIO, PARCELA, VALOR_TOTAL, VALOR_PAGO } = req.body;
 
         const createPagarBService = new CreatePagarBService
 
         const pagarb = await createPagarBService.execute({
             NUMERO,
-            CODCLI,
-            CODFUN,
+            ID_CLIENTE,
+            ID_FUNCIONARIO,
             PARCELA,
             VALOR_TOTAL,
             VALOR_PAGO,

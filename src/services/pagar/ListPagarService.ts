@@ -5,8 +5,8 @@ class ListPagarService{
         const pagar = await prismaClient.pagar.findMany({
             select: {
                 NUMERO: true,
-                CODCLI: true,
-                CODFUN: true,
+                ID_CLIENTE: true,
+                ID_FUNCIONARIO: true,
                 PARCELA: true,
                 VALOR_TOTAL: true,
             }

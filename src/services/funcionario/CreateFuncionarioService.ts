@@ -1,12 +1,12 @@
 import prismaClient from "../../prisma";
 
 interface FuncionarioRequest{
-    CODFUN: number;
+    ID_FUNCIONARIO: string;
     NOME: string;
 }
 
 class CreateFuncionarioService{
-    async execute({ NOME, CODFUN }: FuncionarioRequest){
+    async execute({ NOME, ID_FUNCIONARIO }: FuncionarioRequest){
         
         if(NOME === ''){
             throw new Error('Nome inválido')
@@ -14,11 +14,11 @@ class CreateFuncionarioService{
 
         const funcionario = await prismaClient.funcionario.create({
             data: {
-                CODFUN: CODFUN,
+                ID_FUNCIONARIO: ID_FUNCIONARIO,
                 NOME: NOME,
             },
             select:{
-                CODFUN: true,
+                ID_FUNCIONARIO: true,
                 NOME:true,
             }
         })

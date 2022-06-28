@@ -4,7 +4,7 @@ class ListFuncionarioService{
 
         const funcionario = await prismaClient.funcionario.findMany({
             select: {
-                CODFUN: true,
+                ID_FUNCIONARIO: true,
                 NOME: true,
             }
         })

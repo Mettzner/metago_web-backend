@@ -5,9 +5,11 @@ import multer from 'multer'
 // ENTIDADE
 import { CreateClienteController } from './controllers/cliente/CreateClienteController'
 import { ListClienteController } from './controllers/cliente/ListClienteController'
+import { DeleteClienteController } from './controllers/cliente/DeleteClienteController'
 // MAQUINA
 import { CreateMaquinaController } from './controllers/maquina/CreateMaquinaController'
 import { ListMaquinaController } from './controllers/maquina/ListMaquinaController'
+import { DeleteMaquinaController } from './controllers/maquina/DeleteMaquinaController'
 // PRODUTO
 import { CreateProdutoController } from './controllers/produto/CreateProdutoController'
 import { ListProdutoController } from './controllers/produto/ListProdutoController'
@@ -48,10 +50,12 @@ const upload = multer(uploadConfig.upload("./tmp"));
 //--ROTAS CLIENTE--
 router.post('/cliente', isAuthenticated, new CreateClienteController().handle)
 router.get('/cliente', isAuthenticated, new ListClienteController().handle)
+router.delete('/cliente', isAuthenticated, new DeleteClienteController().handle)
 
 //--ROTAS MAQUINA--
 router.post('/cadmaquina', isAuthenticated, new CreateMaquinaController().handle)
 router.get('/cadmaquina', isAuthenticated, new ListMaquinaController().handle)
+router.delete('/cadmaquina', isAuthenticated, new DeleteMaquinaController().handle)
 
 //--ROTAS PRODUTO--
 router.post('/produto', isAuthenticated, upload.single('file'), new CreateProdutoController().handle)
