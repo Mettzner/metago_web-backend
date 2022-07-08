@@ -1,29 +1,29 @@
 import prismaClient from '../../prisma'
 import { hash } from 'bcryptjs'
 
-interface UserRequest{
+interface UserRequest {
     NOME: string;
     USUARIO: string;
     SENHA: string;
     NIVEL_ACESSO: string;
 }
 
-class CreateUserService{
-    async execute({ NOME, USUARIO, SENHA, NIVEL_ACESSO }: UserRequest){
+class CreateUserService {
+    async execute({ NOME, USUARIO, SENHA, NIVEL_ACESSO }: UserRequest) {
 
         //verificar se ele enviou um email
-        if(!USUARIO){
+        if (!USUARIO) {
             throw new Error("usuario incorreto")
         }
 
         //Verificar se esse email já está cadastrado
         const userAlreadyExist = await prismaClient.usuarios.findFirst({
-            where:{
+            where: {
                 USUARIO: USUARIO
             }
         })
 
-        if (userAlreadyExist){
+        if (userAlreadyExist) {
             throw new Error('Usuário já existe')
         }
 

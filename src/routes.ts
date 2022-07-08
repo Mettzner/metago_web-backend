@@ -6,6 +6,7 @@ import multer from 'multer'
 import { CreateClienteController } from './controllers/cliente/CreateClienteController'
 import { ListClienteController } from './controllers/cliente/ListClienteController'
 import { DeleteClienteController } from './controllers/cliente/DeleteClienteController'
+import { DetailClienteController } from './controllers/cliente/DetailClienteController'
 // MAQUINA
 import { CreateMaquinaController } from './controllers/maquina/CreateMaquinaController'
 import { ListMaquinaController } from './controllers/maquina/ListMaquinaController'
@@ -43,7 +44,7 @@ const upload = multer(uploadConfig.upload("./tmp"));
 //Criação da rota e inserido json para retornar mensagem
 // router.get('/teste', (req: Request, res: Response) => {
 //     return res.json({ nome: "Sujeito Pizza" })
-    // throw new Error('Erro ao fazer esta requisção')
+// throw new Error('Erro ao fazer esta requisção')
 // })
 
 
@@ -51,6 +52,7 @@ const upload = multer(uploadConfig.upload("./tmp"));
 router.post('/cliente', isAuthenticated, new CreateClienteController().handle)
 router.get('/cliente', isAuthenticated, new ListClienteController().handle)
 router.delete('/cliente', isAuthenticated, new DeleteClienteController().handle)
+router.get('/editcliente/:ID_CLIENTE', isAuthenticated, new DetailClienteController().handle)
 
 //--ROTAS MAQUINA--
 router.post('/cadmaquina', isAuthenticated, new CreateMaquinaController().handle)

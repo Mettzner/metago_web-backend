@@ -1,33 +1,34 @@
 import prismaClient from "../../prisma";
 
-interface PagarRequest{
-    NUMERO: number;
+interface PagarRequest {
+    // NUMERO: number;
     ID_CLIENTE: string;
     ID_FUNCIONARIO: string;
     PARCELA: string;
     VALOR_TOTAL: number;
-    DT_VENCIMENTO: Date;
+    // DT_VENCIMENTO: Date;
 }
 
-class CreatePagarService{
-    async execute({ NUMERO, ID_CLIENTE, ID_FUNCIONARIO, PARCELA, VALOR_TOTAL, DT_VENCIMENTO }: PagarRequest){
-        
+class CreatePagarService {
+    // async execute({ NUMERO, ID_CLIENTE, ID_FUNCIONARIO, PARCELA, VALOR_TOTAL, DT_VENCIMENTO }: PagarRequest) {
+    async execute({ ID_CLIENTE, ID_FUNCIONARIO, PARCELA, VALOR_TOTAL }: PagarRequest) {
+
         // if(NUMERO === ''){
         //     throw new Error('Nome inválido')
         // }
 
         const pagar = await prismaClient.pagar.create({
             data: {
-                NUMERO: NUMERO,
+                // NUMERO: NUMERO,
                 ID_CLIENTE: ID_CLIENTE,
                 ID_FUNCIONARIO: ID_FUNCIONARIO,
                 PARCELA: PARCELA,
                 VALOR_TOTAL: VALOR_TOTAL,
-                DT_VENCIMENTO: DT_VENCIMENTO,
+                // DT_VENCIMENTO: DT_VENCIMENTO,
             },
-            select:{
+            select: {
+                // NUMERO: true,
                 NUMERO: true,
-                ID_CLIENTE :true,
             }
         })
 
