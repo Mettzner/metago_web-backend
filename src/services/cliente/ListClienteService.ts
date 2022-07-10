@@ -4,7 +4,7 @@ import prismaClient from "../../prisma";
 class ListClienteService {
     async execute() {
 
-        const cliente = await prismaClient.cliente.findMany({
+        const servico = await prismaClient.cliente.findMany({
             select: {
                 CODCLI: true,
                 NOME: true,
@@ -13,10 +13,13 @@ class ListClienteService {
                 TELEFONE: true,
                 DT_CADASTRO: true,
                 ID_CLIENTE: true,
+            },
+            orderBy: {
+                CODCLI: 'desc',
             }
         })
 
-        return cliente;
+        return servico;
 
     }
 }

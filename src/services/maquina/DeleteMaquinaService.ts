@@ -1,19 +1,19 @@
 import prismaClient from "../../prisma";
 
-interface MaquinaRequest{
+interface MaquinaRequest {
     ID_MAQUINA: string;
 }
 
-class DeleteMaquinaService{
+class DeleteMaquinaService {
     async execute({ ID_MAQUINA }: MaquinaRequest) {
-        
-        const order = await prismaClient.maquina.delete({
-            where:{
+
+        const maquina = await prismaClient.maquina.delete({
+            where: {
                 ID_MAQUINA: ID_MAQUINA,
             }
         })
 
-        return order;
+        return maquina;
 
     }
 }

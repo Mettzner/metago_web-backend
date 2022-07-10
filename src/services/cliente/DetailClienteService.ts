@@ -19,6 +19,7 @@ class DetailClienteService {
                 EMAIL: true,
                 BAIRRO: true,
                 NUMERO: true,
+                CIDADE: true,
                 UF: true,
                 PAIS: true,
                 COMPLEMENTO: true,

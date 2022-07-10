@@ -1,9 +1,14 @@
 declare namespace Express {
   export interface Request {
-    CODIGO: number;
     ID_USUARIO: string;
-    ID_ENTIDADE: string;
-    CODCLI: number;
     ID_CLIENTE: string;
+    ID_FUNCIONARIO: string;
+    ID_PRODUTO: string;
+    ID_PAGAR: string;
+    ID_RECEBER: string;
+    ID_SERVICO: string;
+    ID_RECEBERB: number;
+    ID_PAGARB: number;
+    CODIGO: number;
   }
 }

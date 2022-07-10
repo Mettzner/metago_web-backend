@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
-interface MaquinaRequest{
+interface MaquinaRequest {
     CODIGO: number;
     DESCRICAO: string;
 }
 
-class CreateMaquinaService{
-    async execute({ CODIGO, DESCRICAO }: MaquinaRequest){
-        
-        if(DESCRICAO === ''){
+class CreateMaquinaService {
+    async execute({ CODIGO, DESCRICAO }: MaquinaRequest) {
+
+        if (DESCRICAO === '') {
             throw new Error('Nome inválido')
         }
 
@@ -17,9 +17,9 @@ class CreateMaquinaService{
                 CODIGO: CODIGO,
                 DESCRICAO: DESCRICAO,
             },
-            select:{
+            select: {
                 ID_MAQUINA: true,
-                DESCRICAO:true,
+                DESCRICAO: true,
             }
         })
 

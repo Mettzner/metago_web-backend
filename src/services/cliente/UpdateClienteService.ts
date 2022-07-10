@@ -13,42 +13,35 @@ interface ClienteRequest {
     PAIS: string,
     COMPLEMENTO: string,
     CEP: string,
-    ID_CLIENTE: string,
+    ID_CLIENTE: string
 }
 
-class CreateClienteService {
+class UpdateClienteService {
     async execute({ NOME, CNPJ, EMAIL, TELEFONE, ENDERECO, CIDADE, BAIRRO, NUMERO,
         UF, PAIS, COMPLEMENTO, CEP, ID_CLIENTE }: ClienteRequest) {
 
-        if (NOME === '') {
-            throw new Error('Nome inválido')
-        }
-
-        const cliente = await prismaClient.cliente.create({
+        const cliente = await prismaClient.cliente.update({
+            where: {
+                ID_CLIENTE: ID_CLIENTE
+            },
             data: {
                 NOME: NOME,
                 CNPJ: CNPJ,
-                EMAIL: EMAIL,
                 TELEFONE: TELEFONE,
                 ENDERECO: ENDERECO,
-                CIDADE: CIDADE,
+                EMAIL: EMAIL,
                 BAIRRO: BAIRRO,
                 NUMERO: NUMERO,
                 UF: UF,
                 PAIS: PAIS,
                 COMPLEMENTO: COMPLEMENTO,
                 CEP: CEP,
-            },
-            select: {
-                CODCLI: true,
-                NOME: true,
-                ID_CLIENTE: true,
             }
         })
 
-        return cliente
+        return cliente;
 
     }
 }
 
-export { CreateClienteService }
+export { UpdateClienteService }

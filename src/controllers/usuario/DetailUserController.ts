@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { DetailUserService } from '../../services/usuario/DetailUserService'
 
 class DetailUserController {
-    async handle(req: Request, res: Response){
+    async handle(req: Request, res: Response) {
 
         const CODIGO = req.CODIGO;
 

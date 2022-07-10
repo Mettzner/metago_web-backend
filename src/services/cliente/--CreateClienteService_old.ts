@@ -24,8 +24,25 @@ class CreateClienteService {
             throw new Error('Nome inválido')
         }
 
-        const cliente = await prismaClient.cliente.create({
-            data: {
+        const cliente = await prismaClient.cliente.upsert({
+            where: {
+                ID_CLIENTE: ID_CLIENTE,
+            },
+            update: {
+                NOME: NOME,
+                CNPJ: CNPJ,
+                EMAIL: EMAIL,
+                TELEFONE: TELEFONE,
+                ENDERECO: ENDERECO,
+                CIDADE: CIDADE,
+                BAIRRO: BAIRRO,
+                NUMERO: NUMERO,
+                UF: UF,
+                PAIS: PAIS,
+                COMPLEMENTO: COMPLEMENTO,
+                CEP: CEP,
+            },
+            create: {
                 NOME: NOME,
                 CNPJ: CNPJ,
                 EMAIL: EMAIL,
@@ -43,7 +60,7 @@ class CreateClienteService {
                 CODCLI: true,
                 NOME: true,
                 ID_CLIENTE: true,
-            }
+            },
         })
 
         return cliente

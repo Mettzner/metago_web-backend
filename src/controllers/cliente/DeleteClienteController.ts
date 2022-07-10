@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import { DeleteClienteService } from '../../services/cliente/DeleteClienteService'     
+import { DeleteClienteService } from '../../services/cliente/DeleteClienteService'
 
 
-class DeleteClienteController{
-    async handle(req: Request, res: Response){
+class DeleteClienteController {
+    async handle(req: Request, res: Response) {
         const ID_CLIENTE = req.query.ID_CLIENTE as string;
 
 
