@@ -34,6 +34,7 @@ import { ListReceberBController } from './controllers/receberb/ListReceberBContr
 import { DetailFuncionarioController } from './controllers/funcionario/DetailFuncionarioController'
 import { CreateFuncionarioController } from './controllers/funcionario/CreateFuncionarioController'
 import { ListFuncionarioController } from './controllers/funcionario/ListFuncionarioController'
+import { DeleteFuncionarioController } from './controllers/funcionario/DeleteFuncionarioController'
 // SERVICO
 import { CreateServicoController } from './controllers/servicos/CreateServicoController'
 import { ListServicoController } from './controllers/servicos/ListServicoController'
@@ -72,11 +73,13 @@ router.get('/maquina/detalhes/:ID_MAQUINA', isAuthenticated, new DetailMaquinaCo
 router.post('/produto/create', isAuthenticated, new CreateProdutoController().handle)
 router.get('/produto/listagem', isAuthenticated, new ListProdutoController().handle)
 router.get('/produto/detalhes/:ID_PRODUTO', isAuthenticated, new DetailProdutoController().handle)
+router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().handle)
 
 //--ROTAS PAGAR--
 router.post('/pagar/create', isAuthenticated, new CreatePagarController().handle)
 router.get('/pagar/listagem', isAuthenticated, new ListPagarController().handle)
 router.get('/pagar/detalhes/:ID_PAGAR', isAuthenticated, new DetailPagarController().handle)
+router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().handle)
 
 //--ROTAS PAGARB--
 router.post('/pagarb', isAuthenticated, new CreatePagarBController().handle)
@@ -86,6 +89,7 @@ router.get('/pagarb', isAuthenticated, new ListPagarBController().handle)
 router.post('/receber/create', isAuthenticated, new CreateReceberController().handle)
 router.get('/receber/listagem', isAuthenticated, new ListReceberController().handle)
 router.get('/receber/detalhes/:ID_RECEBER', isAuthenticated, new DetailReceberController().handle)
+router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().handle)
 
 //--ROTAS RECEBERB--
 router.post('/receberb', isAuthenticated, new CreateReceberBController().handle)
@@ -95,6 +99,7 @@ router.get('/receberb', isAuthenticated, new ListReceberBController().handle)
 router.post('/funcionario/create', isAuthenticated, new CreateFuncionarioController().handle)
 router.get('/funcionario/listagem', isAuthenticated, new ListFuncionarioController().handle)
 router.get('/funcionario/detalhes/:ID_FUNCIONARIO', isAuthenticated, new DetailFuncionarioController().handle)
+router.delete('/funcionario/delete', isAuthenticated, new DeleteFuncionarioController().handle)
 
 //--ROTAS SERVICOS--
 router.post('/servico/create', isAuthenticated, new CreateServicoController().handle)
@@ -103,9 +108,10 @@ router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().
 router.get('/servico/detalhes/:ID_SERVICO', isAuthenticated, new DetailServicoController().handle)
 
 //-- ROTAS USER --
-router.post('/cadusuario', new CreateUserController().handle)
+router.post('/usuario', new CreateUserController().handle)
 router.post('/sessao', new AuthUserController().handle)
 router.get('/usuario/listagem', new ListUserController().handle)
 router.get('/me', isAuthenticated, new DetailUserController().handle)
+router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().handle)
 
 export { router };

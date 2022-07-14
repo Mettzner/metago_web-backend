@@ -11,6 +11,7 @@ datasource db {
 }
 
 //criar uma migration :yarn prisma migrate dev
+
 model Usuarios {
   CODIGO       Int       @default(autoincrement())
   NOME         String
