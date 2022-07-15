@@ -6,9 +6,6 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "start": "ts-node-dev src/server.ts",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
