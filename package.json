@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
-    "start":"node ."
+    "start":"yarn dev"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
