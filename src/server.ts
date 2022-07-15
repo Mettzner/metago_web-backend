@@ -5,6 +5,7 @@ import path from 'path'
 
 import { router } from './routes'
 
+const port = 3333;
 
 const app = express();
 app.use(express.json());
@@ -33,4 +34,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 //Criação do servidor escutando na porta 3333
-app.listen(3333, () => console.log('Servidor online'))
+
+app.listen(process.env.PORT || port, () => console.log('Servidor online'))
