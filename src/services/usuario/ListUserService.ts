@@ -10,6 +10,7 @@ class ListUserService {
                 NOME: true,
                 USUARIO: true,
                 NIVEL_ACESSO: true,
+                DT_CADASTRO: true,
             },
             orderBy: {
                 CODIGO: 'desc',

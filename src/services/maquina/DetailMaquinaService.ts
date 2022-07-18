@@ -12,6 +12,7 @@ class DetailMaquinaService {
                 ID_MAQUINA: ID_MAQUINA
             },
             select: {
+                CODIGO: true,
                 DESCRICAO: true,
             }
         })

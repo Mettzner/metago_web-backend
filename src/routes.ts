@@ -45,6 +45,7 @@ import { CreateUserController } from './controllers/usuario/CreateUserController
 import { AuthUserController } from './controllers/usuario/AuthUserController'
 import { DetailUserController } from './controllers/usuario/DetailUserController'
 import { ListUserController } from './controllers/usuario/ListUserController';
+import { DeleteUserController } from './controllers/usuario/DeleteUserController';
 
 import { isAuthenticated } from './middlewares/isAuthenticated'
 
@@ -112,6 +113,6 @@ router.post('/usuario', new CreateUserController().handle)
 router.post('/sessao', new AuthUserController().handle)
 router.get('/usuario/listagem', new ListUserController().handle)
 router.get('/me', isAuthenticated, new DetailUserController().handle)
-router.delete('/servico/delete', isAuthenticated, new DeleteServicoController().handle)
+router.delete('/usuario/delete', isAuthenticated, new DeleteUserController().handle)
 
 export { router };

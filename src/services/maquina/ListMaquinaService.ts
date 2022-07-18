@@ -6,6 +6,7 @@ class ListMaquinaService {
             select: {
                 CODIGO: true,
                 DESCRICAO: true,
+                DT_CADASTRO: true,
             }
         })
 
