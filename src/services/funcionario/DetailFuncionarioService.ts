@@ -12,7 +12,9 @@ class DetailFuncionarioService {
                 ID_FUNCIONARIO: ID_FUNCIONARIO
             },
             select: {
+                CODFUN: true,
                 NOME: true,
+                DT_CADASTRO: true,
             }
         })
 
